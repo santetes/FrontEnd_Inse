@@ -10,6 +10,6 @@ import { MainPagesComponent } from './main-pages.component';
 @NgModule({
   declarations: [MainPagesComponent, EquiposComponent, DashboardComponent],
   imports: [CommonModule, SharedModule, PagesRoutingModule],
-  exports: [],
+  exports: [MainPagesComponent],
 })
 export class PagesModule {}
