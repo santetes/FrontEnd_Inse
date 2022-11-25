@@ -7,17 +7,17 @@
     <!-- Sidebar navigation-->
     <nav class="sidebar-nav">
       <ul id="sidebarnav">
-        <li class="nav-small-cap">LABORATORIO</li>
-        <li>
-          <a
-            class="has-arrow waves-effect waves-dark"
-            href="#"
-            aria-expanded="false"
-            ><i class="mdi mdi-package-variant-closed"></i
-            ><span class="hide-menu">Equipos</span></a
+        <li *ngFor="let categoria of menu">
+          <a class="has-arrow waves-effect waves-dark" aria-expanded="false"
+            ><i class="{{ categoria.icono }}"></i
+            ><span class="hide-menu">{{ categoria.nombre }}</span></a
           >
           <ul aria-expanded="false" class="collapse">
-            <li><a href="#">Listado </a></li>
+            <li *ngFor="let subcategoria of categoria.subCategorias">
+              <a routerLink="{{ subcategoria.path }}" routerLinkActive="active"
+                >{{ subcategoria.nombre }}
+              </a>
+            </li>
           </ul>
         </li>
       </ul>
