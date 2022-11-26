@@ -11,7 +11,21 @@ export class SidebarService {
       subCategorias: [
         {
           nombre: 'Listado',
-          path: '/equipos',
+          path: '/listado-equipos',
+        },
+      ],
+    },
+    {
+      nombre: 'Configuración',
+      icono: 'mdi mdi-settings',
+      subCategorias: [
+        {
+          nombre: 'Dashboard',
+          path: '/configuracion-dashboard',
+        },
+        {
+          nombre: 'BBDD',
+          path: '/configuracion-bbdd',
         },
       ],
     },
