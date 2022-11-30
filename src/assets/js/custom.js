@@ -171,4 +171,4 @@ const funcionIniciadoraScriptCustomJs = () => {
   });
 };
 
-funcionIniciadoraScriptCustomJs();
+// funcionIniciadoraScriptCustomJs();

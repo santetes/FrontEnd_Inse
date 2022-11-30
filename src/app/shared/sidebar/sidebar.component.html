@@ -14,7 +14,10 @@
           >
           <ul aria-expanded="false" class="collapse">
             <li *ngFor="let subcategoria of categoria.subCategorias">
-              <a routerLink="{{ subcategoria.path }}" routerLinkActive="active"
+              <a
+                routerLink="{{ subcategoria.path }}"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
                 >{{ subcategoria.nombre }}
               </a>
             </li>

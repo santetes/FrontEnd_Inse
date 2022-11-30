@@ -14,19 +14,23 @@ const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent,
+        data: { titulo: 'Inicio' },
         pathMatch: 'full',
       },
       {
         path: 'listado-equipos',
         component: ListadoEquiposComponent,
+        data: { titulo: 'Equipos' },
       },
       {
         path: 'configuracion-bbdd',
         component: BBDDComponent,
+        data: { titulo: 'Configuración-BBDD' },
       },
       {
         path: 'configuracion-dashboard',
         component: DashboardSettingsComponent,
+        data: { titulo: 'Configuración-Dashboard' },
       },
       {
         path: '',

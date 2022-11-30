@@ -6,6 +6,16 @@ import { Injectable } from '@angular/core';
 export class SidebarService {
   private menuUsuario = [
     {
+      nombre: 'Dashboard',
+      icono: 'mdi mdi-home-outline',
+      subCategorias: [
+        {
+          nombre: 'Main',
+          path: '/dashboard',
+        },
+      ],
+    },
+    {
       nombre: 'Equipos',
       icono: 'mdi mdi-package-variant-closed',
       subCategorias: [

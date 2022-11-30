@@ -1,11 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+declare function funcionIniciadoraScriptCustomJs(): any;
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styles: [
-  ]
+  styles: [],
 })
-export class HeaderComponent {
-
-}
+export class HeaderComponent {}
