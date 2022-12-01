@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
+
+import { UsuarioService } from '../../services/usuario.service';
 
 declare function funcionIniciadoraScriptCustomJs(): any;
 
@@ -13,10 +16,10 @@ export class RegisterComponent implements OnInit {
 
   public registerForm = this.fb.group(
     {
-      nombre: ['Santos', [Validators.required]],
-      email: ['sanmarti@ibv.org', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
-      password2: ['', [Validators.required]],
+      nombre: ['User_3', [Validators.required]],
+      email: ['User_3@users.com', [Validators.required, Validators.email]],
+      password: ['123456', [Validators.required]],
+      password2: ['123456', [Validators.required]],
     },
     {
       validators: this.validarContrasegnas('password', 'password2'),
@@ -27,17 +30,28 @@ export class RegisterComponent implements OnInit {
     funcionIniciadoraScriptCustomJs();
   }
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private usuarioService: UsuarioService
+  ) {}
 
   crearUsuario() {
     this.registerSubmited = true;
-    console.log(this.registerForm.value);
 
-    if (this.registerForm.valid) {
-      console.log('posteando formulario');
-    } else {
-      console.log('formulario no posteado');
+    if (this.registerForm.invalid) {
+      return;
     }
+
+    this.usuarioService.crearUsuario(this.registerForm.value).subscribe({
+      next: (resp) => console.log(resp),
+      error: (err) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err.error.msg,
+        });
+      },
+    });
   }
 
   validarCampo(campo: string): boolean {

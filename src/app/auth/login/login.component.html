@@ -8,9 +8,11 @@
   <div class="login-box card">
     <div class="card-body">
       <form
+        (submit)="login()"
+        [formGroup]="loginForm"
+        autocomplete="off"
         class="form-horizontal form-material"
         id="loginform"
-        action="index.html"
       >
         <a class="text-center db"
           ><img src="../../../assets/images/logoIbv.png" alt="Home"
@@ -22,19 +24,19 @@
               <div class="form-group m-t-40">
                 <div class="col-xs-12">
                   <input
+                    formControlName="email"
                     class="form-control"
-                    type="text"
-                    required=""
-                    placeholder="Username"
+                    type="email"
+                    placeholder="Email"
                   />
                 </div>
               </div>
               <div class="form-group">
                 <div class="col-xs-12">
                   <input
+                    formControlName="password"
                     class="form-control"
                     type="password"
-                    required=""
                     placeholder="Password"
                   />
                 </div>
@@ -54,12 +56,23 @@
               <!-- login google -->
             </div>
           </div>
+
+          <div class="row">
+            <div class="col text-danger">
+              <p *ngIf="validarCampo('email')">
+                El email es obligatorio y tiene que ser válido
+              </p>
+              <p *ngIf="validarCampo('password')">
+                Debe indicar una contraseña
+              </p>
+            </div>
+          </div>
+
           <div class="form-group text-center m-t-20">
             <div class="col-xs-12">
               <button
                 class="btn btn-info btn-lg btn-block text-uppercase btn-rounded"
-                type="button"
-                routerLink="/"
+                type="submit"
               >
                 Log In
               </button>
