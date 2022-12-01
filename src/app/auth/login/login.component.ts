@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  Validators,
-  FormGroup,
-  FormControl,
-} from '@angular/forms';
+import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+
 import { DashconfigService } from '../../services/dashconfig.service';
 import { UsuarioService } from '../../services/usuario.service';
 
@@ -20,8 +17,11 @@ export class LoginComponent implements OnInit {
   public mostrarLogin!: boolean;
 
   public loginForm: FormGroup = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required]),
+    email: new FormControl('user_1@user.com', [
+      Validators.required,
+      Validators.email,
+    ]),
+    password: new FormControl('123456', [Validators.required]),
   });
 
   public formSubmited: boolean = false;
@@ -29,8 +29,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private dashconfigService: DashconfigService,
     private router: Router,
-    private usuarioService: UsuarioService,
-    private fb: FormBuilder
+    private usuarioService: UsuarioService
   ) {}
 
   ngOnInit(): void {
@@ -46,8 +45,25 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    console.log('submited');
-    this.usuarioService.loginUsuario(this.loginForm.value);
+    this.usuarioService.loginUsuario(this.loginForm.value).subscribe({
+      next: (resp) => {
+        Swal.fire({
+          icon: 'success',
+          timer: 1500,
+          title: resp.msg,
+          showConfirmButton: false,
+        }).then((algo) => {
+          this.router.navigateByUrl('/');
+        });
+      },
+      error: (err) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err.error.msg,
+        });
+      },
+    });
     // this.router.navigateByUrl('/');
   }
 

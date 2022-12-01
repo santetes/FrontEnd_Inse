@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 
 import { UsuarioService } from '../../services/usuario.service';
+import { Router } from '@angular/router';
 
 declare function funcionIniciadoraScriptCustomJs(): any;
 
@@ -16,8 +17,8 @@ export class RegisterComponent implements OnInit {
 
   public registerForm = this.fb.group(
     {
-      nombre: ['User_3', [Validators.required]],
-      email: ['User_3@users.com', [Validators.required, Validators.email]],
+      nombre: ['user_3', [Validators.required]],
+      email: ['user_3@user.com', [Validators.required, Validators.email]],
       password: ['123456', [Validators.required]],
       password2: ['123456', [Validators.required]],
     },
@@ -32,6 +33,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private router: Router,
     private usuarioService: UsuarioService
   ) {}
 
@@ -43,7 +45,16 @@ export class RegisterComponent implements OnInit {
     }
 
     this.usuarioService.crearUsuario(this.registerForm.value).subscribe({
-      next: (resp) => console.log(resp),
+      next: (resp) => {
+        Swal.fire({
+          icon: 'success',
+          timer: 1500,
+          title: resp.msg,
+          showConfirmButton: false,
+        }).then((algo) => {
+          this.router.navigateByUrl('/');
+        });
+      },
       error: (err) => {
         Swal.fire({
           icon: 'error',
