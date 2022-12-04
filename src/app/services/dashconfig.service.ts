@@ -1,3 +1,4 @@
+// TODO: crear modelo en bbdd con la configuración
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class DashconfigService {
   private options = {
-    manualLoginReg: true,
+    manualLoginReg: false,
   };
 
   get getOptions() {

@@ -17,10 +17,10 @@ export class RegisterComponent implements OnInit {
 
   public registerForm = this.fb.group(
     {
-      nombre: ['user_3', [Validators.required]],
-      email: ['user_3@user.com', [Validators.required, Validators.email]],
-      password: ['123456', [Validators.required]],
-      password2: ['123456', [Validators.required]],
+      nombre: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
+      password2: ['', [Validators.required]],
     },
     {
       validators: this.validarContrasegnas('password', 'password2'),

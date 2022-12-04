@@ -1,9 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-declare function funcionIniciadoraScriptCustomJs(): any;
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styles: [],
+  styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+  constructor(private usuarioService: UsuarioService) {}
+
+  logOut() {
+    this.usuarioService.logOut();
+  }
+}

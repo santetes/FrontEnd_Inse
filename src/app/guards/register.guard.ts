@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { DashconfigService } from '../services/dashconfig.service';
+import { Router } from '@angular/router';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
@@ -10,12 +11,20 @@ import {
   providedIn: 'root',
 })
 export class RegisterGuard implements CanActivate {
-  constructor(private dashconfigService: DashconfigService) {}
+  constructor(
+    private dashconfigService: DashconfigService,
+    private router: Router
+  ) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    return this.dashconfigService.getOptions.manualLoginReg;
+    if (this.dashconfigService.getOptions.manualLoginReg) {
+      return true;
+    } else {
+      this.router.navigateByUrl('/login');
+      return false;
+    }
   }
 }

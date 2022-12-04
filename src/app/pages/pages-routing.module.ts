@@ -5,11 +5,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ListadoEquiposComponent } from './equipos/listado-equipos/listado-equipos.component';
 import { BBDDComponent } from './configuracion/bbdd/bbdd.component';
 import { DashboardSettingsComponent } from './configuracion/dashboard-settings/dashboard-settings.component';
+import { AuthGuard } from '../guards/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: MainPagesComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'dashboard',
