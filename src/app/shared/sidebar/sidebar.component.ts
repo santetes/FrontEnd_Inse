@@ -12,6 +12,6 @@ export class SidebarComponent implements OnInit {
   constructor(private sidebarService: SidebarService) {}
 
   ngOnInit(): void {
-    this.menu = this.sidebarService.getMenuUsuario;
+    this.menu = this.sidebarService.getMenu;
   }
 }

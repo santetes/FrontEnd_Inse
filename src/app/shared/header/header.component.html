@@ -60,10 +60,14 @@
         </li>
         <li class="nav-item hidden-sm-down"></li>
       </ul>
-      <!-- ============================================================== -->
-      <!-- User profile and search -->
-      <!-- ============================================================== -->
+
       <ul class="navbar-nav my-lg-0">
+        <!-- ============================================================== -->
+        <!-- Nombre usuario validado -->
+        <!-- ============================================================== -->
+        <li class="nav-item">
+          <p class="nav-link nombre-cabecera">{{ usuario.nombre }}</p>
+        </li>
         <!-- ============================================================== -->
         <!-- Profile -->
         <!-- ============================================================== -->
@@ -76,7 +80,7 @@
             aria-haspopup="true"
             aria-expanded="false"
             ><img
-              src="../assets/images/users/1.jpg"
+              [src]="usuario.img | imagenPipe"
               alt="user"
               class="profile-pic"
           /></a>
@@ -85,12 +89,11 @@
               <li>
                 <div class="dw-user-box">
                   <div class="u-img">
-                    <img src="./assets/images/users/1.jpg" alt="user" />
+                    <img [src]="usuario.img | imagenPipe" alt="user" />
                   </div>
                   <div class="u-text">
-                    <h4>Steave Jobs</h4>
-                    <p>varun@gmail.com</p>
-                    <p class="text-muted">Administrador</p>
+                    <p>{{ usuario.email }}</p>
+                    <p class="text-muted">{{ usuario.role | role }}</p>
                   </div>
                 </div>
               </li>

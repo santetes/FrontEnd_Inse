@@ -1,3 +1,11 @@
 .cursor {
   cursor: pointer;
 }
+
+.nombre-cabecera {
+  font-size: 14px !important;
+  color: rgb(218, 218, 218) !important;
+  margin-bottom: 0px;
+  padding: 0;
+  margin-top: 15px;
+}

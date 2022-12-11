@@ -24,7 +24,7 @@ declare const google: any;
 export class LoginComponent implements OnInit, AfterViewInit {
   @ViewChild('googleBtn') googleBtn!: ElementRef;
 
-  public mostrarLogin!: boolean;
+  public mostrarLoginManual!: boolean;
 
   public loginForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -42,7 +42,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngAfterViewInit(): void {
-    this.googleInit();
+    if (!this.mostrarLoginManual) {
+      this.googleInit();
+    }
   }
 
   googleInit() {
@@ -89,7 +91,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     funcionIniciadoraScriptCustomJs();
     // Comprobamos si debemos mostrar tanto los campos de login manual cómo el enlace a la página de registro
-    this.mostrarLogin = this.dashconfigService.getOptions.manualLoginReg;
+    this.mostrarLoginManual = this.dashconfigService.getOptions.manualLoginReg;
     // Comprobamos si existe mail almacenado por la opción recuerdaMe
     this.cargarMailLocalStorage();
   }
