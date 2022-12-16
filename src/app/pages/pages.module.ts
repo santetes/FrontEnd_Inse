@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PagesRoutingModule } from './pages-routing.module';
+import { PipesModule } from '../pipes/pipes.module';
 import { SharedModule } from '../shared/shared.module';
 
 import { MainPagesComponent } from './main-pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ListadoEquiposComponent } from './equipos/listado-equipos/listado-equipos.component';
 import { DashboardSettingsComponent } from './configuracion/dashboard-settings/dashboard-settings.component';
+import { UsuariosComponent } from './configuracion/usuarios/usuarios.component';
 
 @NgModule({
   declarations: [
@@ -14,8 +16,9 @@ import { DashboardSettingsComponent } from './configuracion/dashboard-settings/d
     DashboardComponent,
     ListadoEquiposComponent,
     DashboardSettingsComponent,
+    UsuariosComponent,
   ],
-  imports: [CommonModule, SharedModule, PagesRoutingModule],
+  imports: [CommonModule, SharedModule, PagesRoutingModule, PipesModule],
   exports: [MainPagesComponent],
 })
 export class PagesModule {}

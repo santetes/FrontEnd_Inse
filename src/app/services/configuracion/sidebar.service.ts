@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { UsuarioService } from './usuario.service';
-import { Usuario } from '../models/usuario.model';
+import { UsuarioService } from '../usuario.service';
+import { Usuario } from '../../models/usuario.model';
 
 @Injectable({
   providedIn: 'root',
@@ -40,6 +40,10 @@ export class SidebarService {
         {
           nombre: 'BBDD',
           path: '/configuracion-bbdd',
+        },
+        {
+          nombre: 'Usuarios',
+          path: '/configuracion-usuarios',
         },
       ],
     },

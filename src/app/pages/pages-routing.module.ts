@@ -6,6 +6,8 @@ import { ListadoEquiposComponent } from './equipos/listado-equipos/listado-equip
 import { BBDDComponent } from './configuracion/bbdd/bbdd.component';
 import { DashboardSettingsComponent } from './configuracion/dashboard-settings/dashboard-settings.component';
 import { AuthGuard } from '../guards/auth.guard';
+import { AdminGuard } from '../guards/admin.guard';
+import { UsuariosComponent } from './configuracion/usuarios/usuarios.component';
 
 const routes: Routes = [
   {
@@ -27,12 +29,20 @@ const routes: Routes = [
       {
         path: 'configuracion-bbdd',
         component: BBDDComponent,
+        canActivate: [AdminGuard],
         data: { titulo: 'Configuración-BBDD' },
       },
       {
         path: 'configuracion-dashboard',
         component: DashboardSettingsComponent,
+        canActivate: [AdminGuard],
         data: { titulo: 'Configuración-Dashboard' },
+      },
+      {
+        path: 'configuracion-usuarios',
+        component: UsuariosComponent,
+        canActivate: [AdminGuard],
+        data: { titulo: 'Configuración-Usuarios' },
       },
       {
         path: '',

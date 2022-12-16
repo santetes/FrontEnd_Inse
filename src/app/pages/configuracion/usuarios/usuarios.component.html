@@ -1,0 +1,76 @@
+<div class="row animated fadeIn">
+  <div class="col-10">
+    <div class="card">
+      <div class="card-body">
+        <input
+          #cajaBusqueda
+          (keyup)="teclaPresionada(cajaBusqueda.value)"
+          type="text"
+          class="col form-control"
+          placeholder="Búsqueda de Usuario"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="usuarios; else cargando" class="row animated fadeIn">
+  <div class="col-10">
+    <div class="card">
+      <div class="card-body">
+        <h4>Listado de Usuarios Registrados</h4>
+        <div class="table-responsive no-select">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Email</th>
+                <th>Nombre</th>
+                <th>Role</th>
+                <th>Auth</th>
+                <th>Estado</th>
+                <th class="text-nowrap">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let user of usuarios"
+                [ngClass]="{
+                  'text-danger': user.estado === false
+                }"
+              >
+                <td>{{ user.email }}</td>
+                <td>{{ user.nombre }}</td>
+                <td>{{ user.role | role }}</td>
+                <td>{{ user.google ? "Google" : "Manual" }}</td>
+                <td>
+                  {{ user.estado ? "Activo" : "Borrado" }}
+                </td>
+                <td class="text-nowrap w-80 text-center">
+                  <a href="#" data-toggle="tooltip" data-original-title="Edit">
+                    <i class="fa fa-pencil text-inverse m-r-10"></i>
+                  </a>
+                  &nbsp;
+                  <a href="#" data-toggle="tooltip" data-original-title="Close">
+                    <i class="fa fa-trash-o text-danger"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #cargando>
+  <div class="row">
+    <div class="col-12">
+      <div class="alert alert-info text-center">
+        <h4 class="alert-heading">Cargando</h4>
+        <i class="fa fa-spin fa-refresh fa-2x"></i>
+        <p class="mb-0">Por favor espere...</p>
+      </div>
+    </div>
+  </div>
+</ng-template>

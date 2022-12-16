@@ -10,7 +10,7 @@ import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
-import { DashconfigService } from '../../services/dashconfig.service';
+import { DashconfigService } from '../../services/configuracion/dashconfig.service';
 import { UsuarioService } from '../../services/usuario.service';
 
 declare function funcionIniciadoraScriptCustomJs(): any;

@@ -17,12 +17,25 @@ const base_url = environment.base_url;
 })
 export class UsuarioService {
   private _usuario!: Usuario;
+  private _usuarios!: Usuario[];
 
   get getUsuario() {
     return { ...this._usuario };
   }
 
+  get getUsuarios() {
+    return [...this._usuarios];
+  }
+
   constructor(private http: HttpClient, private router: Router) {}
+
+  getListadoUsuario() {
+    const token = localStorage.getItem('x-token') || '';
+
+    return this.http.get(`${base_url}/user`, {
+      headers: { 'x-token': token },
+    });
+  }
 
   validarToken() {
     // inicion el servicion signIn de google desde el dashboard para que se pueda hacer logOut sin haber pasado
@@ -56,6 +69,8 @@ export class UsuarioService {
     return new Usuario(nombre, email, estado, '', google, role, img, uid);
   }
 
+  // ----------------------------------
+
   crearUsuario(formData: RegisterForm) {
     return this.http.post(`${base_url}/user`, formData).pipe(
       tap((resp: any) => {
@@ -85,7 +100,6 @@ export class UsuarioService {
   }
 
   logOut() {
-    // TODO: indicar en el email para el revoke el usuario.email
     localStorage.removeItem('x-token');
 
     google.accounts.id.revoke(this._usuario.email, () => {

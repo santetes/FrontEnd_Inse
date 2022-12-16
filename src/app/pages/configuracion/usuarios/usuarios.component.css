@@ -1,0 +1,7 @@
+.w-80 {
+  width: 80px;
+}
+
+.no-select {
+  user-select: none;
+}

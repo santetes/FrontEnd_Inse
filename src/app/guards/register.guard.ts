@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DashconfigService } from '../services/dashconfig.service';
+import { DashconfigService } from '../services/configuracion/dashconfig.service';
 import { Router } from '@angular/router';
 import {
   ActivatedRouteSnapshot,

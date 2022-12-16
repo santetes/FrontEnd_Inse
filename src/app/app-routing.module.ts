@@ -9,6 +9,7 @@ const routes: Routes = [
   // 'dashboard'->pagesModule
   // 'equipos'->pagesModule
   // 'login'-->AuthModule
+  // 'register'-->AuthModule
 
   {
     path: '**',

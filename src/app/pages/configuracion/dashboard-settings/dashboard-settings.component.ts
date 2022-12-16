@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DashconfigService } from '../../../services/dashconfig.service';
+import { DashconfigService } from '../../../services/configuracion/dashconfig.service';
 
 @Component({
   selector: 'app-dashboard-settings',
