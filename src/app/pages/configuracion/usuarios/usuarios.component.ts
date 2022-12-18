@@ -10,9 +10,9 @@ import { debounceTime, Subject } from 'rxjs';
   styleUrls: ['./usuarios.component.css'],
 })
 export class UsuariosComponent implements OnInit, OnDestroy {
-  private _subject: Subject<string> = new Subject();
+  private $subject: Subject<string> = new Subject();
   public usuarios!: Usuario[];
-  private _todosUsuarios!: Usuario[];
+  private _todosUsuariosTemp!: Usuario[];
 
   constructor(
     private usuarioService: UsuarioService,
@@ -20,31 +20,38 @@ export class UsuariosComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this._subject
+    this.$subject
       .pipe(debounceTime(300))
       .subscribe((termino) => this.busqueda(termino));
 
+    this.cargarUsuarios();
+  }
+
+  cargarUsuarios() {
     this.usuarioService.getListadoUsuario().subscribe((resp: any) => {
       this.usuarios = resp.usuarios;
-      this._todosUsuarios = resp.usuarios;
+      this._todosUsuariosTemp = resp.usuarios;
     });
   }
 
   ngOnDestroy(): void {
-    this._subject.unsubscribe();
+    this.$subject.unsubscribe();
   }
 
   teclaPresionada(termino: string) {
-    this._subject.next(termino);
+    this.$subject.next(termino);
   }
 
   busqueda(termino: any) {
     if (!termino) {
-      this.usuarios = this._todosUsuarios;
+      this.usuarios = this._todosUsuariosTemp;
+      return;
     }
 
     this.busquedaService
       .busquedaPorUsuario(termino)
       .subscribe((resp: any) => (this.usuarios = resp.resultado));
   }
+
+  lanzarModal(user: Usuario) {}
 }

@@ -46,12 +46,10 @@
                   {{ user.estado ? "Activo" : "Borrado" }}
                 </td>
                 <td class="text-nowrap w-80 text-center">
-                  <a href="#" data-toggle="tooltip" data-original-title="Edit">
-                    <i class="fa fa-pencil text-inverse m-r-10"></i>
-                  </a>
-                  &nbsp;
-                  <a href="#" data-toggle="tooltip" data-original-title="Close">
-                    <i class="fa fa-trash-o text-danger"></i>
+                  <a (click)="lanzarModal(user)">
+                    <i
+                      class="fa fa-edit text-inverse m-r-10 text-secondary cursor"
+                    ></i>
                   </a>
                 </td>
               </tr>
