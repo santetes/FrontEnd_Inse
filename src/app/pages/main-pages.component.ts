@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalUsuarioService } from '../services/modals/modal-usuario.service';
 
 // Esto siguiente es una función declarada en el custom.js para que cargue correctamente el script de la plantilla.
 // Se ejecuta en el própio script y en este componente principal
@@ -11,6 +12,13 @@ declare const google: any;
   styles: [],
 })
 export class MainPagesComponent implements OnInit {
+  anyo: number = new Date().getFullYear();
+  get getMostrarModalUsuario() {
+    return this.modalUsuarioService.mostrarModal;
+  }
+
+  constructor(private modalUsuarioService: ModalUsuarioService) {}
+
   ngOnInit(): void {
     funcionIniciadoraScriptCustomJs();
 
@@ -22,5 +30,4 @@ export class MainPagesComponent implements OnInit {
       callback: (response: any) => {},
     });
   }
-  anyo: number = new Date().getFullYear();
 }

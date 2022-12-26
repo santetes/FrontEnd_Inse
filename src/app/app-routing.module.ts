@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PagesRoutingModule } from './pages/pages-routing.module';
 import { AuthRoutingModule } from './auth/auth-routing.module';
 import { NotpagefoundComponent } from './notpagefound/notpagefound.component';
+import { UsuarioModalComponent } from './pages/modals/usuario-modal/usuario-modal.component';
 
 const routes: Routes = [
   // 'dashboard'->pagesModule

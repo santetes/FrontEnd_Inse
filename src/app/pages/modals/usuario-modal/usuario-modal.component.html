@@ -1,0 +1,96 @@
+<div
+  id="responsive-modal"
+  class="modal fade show bg-modal animated fadeIn"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+  style="display: block; padding-right: 17px"
+>
+  <div class="modal-dialog maxWidth-800">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Configuración de Usuario</h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-hidden="true"
+          (click)="cerrarModal()"
+        >
+          ×
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formularioUsuario">
+          <div class="row">
+            <div class="form-group col-8">
+              <label for="nombre" class="control-label">Nombre:</label>
+              <input
+                formControlName="nombre"
+                type="text"
+                class="form-control"
+                id="nombre"
+              />
+            </div>
+            <div class="form-group col-4">
+              <label for="role" class="control-label">Role:</label>
+              <select #roleSelect class="form-control" formControlName="role">
+                <option value="USER_ROLE">USER_ROLE</option>
+                <option value="GESTOR_ROLE">GESTOR_ROLE</option>
+                <option value="ADMIN_ROLE">ADMIN_ROLE</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-8">
+              <label for="email" class="control-label">Email:</label>
+              <input
+                formControlName="email"
+                type="text"
+                class="form-control"
+                id="email"
+                [readOnly]="getIsUserGoogle"
+              />
+            </div>
+            <div class="form-group col-4">
+              <label for="estado" class="control-label">Estado:</label>
+              <select
+                #estadoSelect
+                class="form-control"
+                formControlName="estado"
+              >
+                <option value="true">True</option>
+                <option value="false">False</option>
+              </select>
+            </div>
+          </div>
+        </form>
+        <p *ngIf="campoEsValido('nombre')" class="text-danger">
+          El campo de nombre no puede encontrase vacío
+        </p>
+        <p *ngIf="campoEsValido('email')" class="text-danger">
+          El email tiene que tener un formato válido
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          (click)="cerrarModal()"
+          class="btn btn-default waves-effect"
+          data-dismiss="modal"
+        >
+          Cerrar
+        </button>
+        <button
+          type="button"
+          (click)="actualizarUsuario()"
+          class="btn btn-danger waves-effect waves-light"
+          [disabled]="!formularioUsuario.valid"
+        >
+          <i class="fa fa-save"></i>
+          Guardar Cambios
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

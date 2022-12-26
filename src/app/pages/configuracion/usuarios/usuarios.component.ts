@@ -2,7 +2,10 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UsuarioService } from '../../../services/usuario.service';
 import { Usuario } from '../../../models/usuario.model';
 import { BusquedaService } from '../../../services/busqueda.service';
-import { debounceTime, Subject } from 'rxjs';
+import { debounceTime, Subject, Subscription } from 'rxjs';
+import { ModalUsuarioService } from '../../../services/modals/modal-usuario.service';
+
+let subscription: Subscription;
 
 @Component({
   selector: 'app-usuarios',
@@ -16,7 +19,8 @@ export class UsuariosComponent implements OnInit, OnDestroy {
 
   constructor(
     private usuarioService: UsuarioService,
-    private busquedaService: BusquedaService
+    private busquedaService: BusquedaService,
+    private modalUsuarioService: ModalUsuarioService
   ) {}
 
   ngOnInit(): void {
@@ -53,5 +57,18 @@ export class UsuariosComponent implements OnInit, OnDestroy {
       .subscribe((resp: any) => (this.usuarios = resp.resultado));
   }
 
-  lanzarModal(user: Usuario) {}
+  lanzarModal(user: Usuario, indice: number) {
+    subscription = this.modalUsuarioService.lanzarModal(user).subscribe({
+      next: (resp: any) => {
+        if (resp.ok) {
+          this.actualizaListadoUsuarios(resp.usuarioActualizado, indice);
+        }
+        subscription.unsubscribe();
+      },
+    });
+  }
+
+  actualizaListadoUsuarios(user: Usuario, indice: number) {
+    this.usuarios.splice(indice, 1, user);
+  }
 }

@@ -6,7 +6,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class ImagenPipePipe implements PipeTransform {
   transform(img: string | undefined): unknown {
     if (!img) {
-      console.log(img);
       return '../../../assets/images/no-image.webp';
     }
 

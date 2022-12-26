@@ -1,8 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { RegisterForm } from '../interfaces/registerForm.interface';
-import { LoginForm } from '../interfaces/loginForm.interface';
+import {
+  RegisterForm,
+  LoginForm,
+  ActualizacionForm,
+} from '../interfaces/usuarioForm.interface';
 import { map, tap, catchError, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { Usuario } from '../models/usuario.model';
@@ -77,6 +80,12 @@ export class UsuarioService {
         localStorage.setItem('x-token', resp.jwt);
       })
     );
+  }
+
+  actualizarUsuario(data: ActualizacionForm, id: string | undefined) {
+    return this.http.put(`${base_url}/user/${id}`, data, {
+      headers: { 'x-token': localStorage.getItem('x-token') || '' },
+    });
   }
 
   loginUsuario(formData: LoginForm) {

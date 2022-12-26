@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class DashconfigService {
   private options = {
-    manualLoginReg: false,
+    manualLoginReg: true,
   };
 
   get getOptions() {
